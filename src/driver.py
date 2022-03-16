@@ -29,9 +29,7 @@ from cloudshell.nvidia.onyx.flows.nvidia_configuration_flow import (
 from cloudshell.nvidia.onyx.flows.nvidia_connectivity_flow import (
     NvidiaConnectivityFlow as ConnectivityFlow,
 )
-from cloudshell.nvidia.onyx.flows.nvidia_load_firmware_flow import (
-    NvidiaLoadFirmwareFlow as FirmwareFlow,
-)
+
 from cloudshell.nvidia.onyx.flows.nvidia_run_command_flow import (
     NvidiaRunCommandFlow as CommandFlow,
 )
@@ -182,12 +180,9 @@ class NvidiaOnyxDriver(
         connectivity_operations = ConnectivityFlow(
             logger=logger,
             cli_handler=cli_handler,
-            support_multi_vlan_str=True,
-            support_vlan_range_str=True,
-            is_switch=True
         )
         logger.info("Start applying connectivity changes.")
-        result = connectivity_operations.apply_connectivity_changes(request=request)
+        result = connectivity_operations.apply_connectivity(request=request)
         logger.info("Apply Connectivity changes completed")
         return result
 
