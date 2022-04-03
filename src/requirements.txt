@@ -1,0 +1,4 @@
+cloudshell-automation-api>=9.2
+cloudshell-nvidia-onyx>=1.0,<2.0
+cloudshell-shell-networking-standard==5.0.4
+cloudshell-shell-core>=5.0,<6.0
