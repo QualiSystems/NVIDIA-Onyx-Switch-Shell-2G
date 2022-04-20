@@ -136,5 +136,5 @@ node_types:
         file: shell-icon.png
         type: tosca.artifacts.File
       driver:
-        file: CiscoIOSSwitchShell2GDriver.zip
+        file: NVIDIAOnyxSwitchShell2GDriver.zip
         type: tosca.artifacts.File
