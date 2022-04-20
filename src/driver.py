@@ -44,7 +44,7 @@ from cloudshell.nvidia.onyx.snmp.nvidia_snmp_handler import (
 class NvidiaOnyxDriver(
     ResourceDriverInterface, NetworkingResourceDriverInterface, GlobalLock
 ):
-    SUPPORTED_OS = [r"Onyx"]
+    SUPPORTED_OS = [r"Onyx", "MLNX[ -]?OS"]
     SHELL_NAME = "NVIDIA Onyx Switch 2G"
 
     def __init__(self):
