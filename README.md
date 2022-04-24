@@ -259,3 +259,4 @@ For release updates, see the shell's [GitHub releases page](https://github.com/Q
 # Known Issues
 
 - Due to the Physical Entity table design, all ports that has **no** SFP or GBIC transceiver installed will be skipped during the **Autoload**.
+- Mellanox devices don't have startup-config. The relevant error message will be raised during Save/Restore command for startup configuration.
