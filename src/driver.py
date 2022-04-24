@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from cloudshell.nvidia.onyx.cli.nvidia_cli_handler import NvidiaCli
 from cloudshell.shell.core.driver_context import (
     AutoLoadCommandContext,
     AutoLoadDetails,
@@ -20,6 +19,7 @@ from cloudshell.shell.standards.networking.resource_config import (
     NetworkingResourceConfig,
 )
 
+from cloudshell.nvidia.onyx.cli.nvidia_cli_handler import NvidiaCli
 from cloudshell.nvidia.onyx.flows.nvidia_autoload_flow import (
     NvidiaSnmpAutoloadFlow as AutoloadFlow,
 )
@@ -29,13 +29,10 @@ from cloudshell.nvidia.onyx.flows.nvidia_configuration_flow import (
 from cloudshell.nvidia.onyx.flows.nvidia_connectivity_flow import (
     NvidiaConnectivityFlow as ConnectivityFlow,
 )
-
 from cloudshell.nvidia.onyx.flows.nvidia_run_command_flow import (
     NvidiaRunCommandFlow as CommandFlow,
 )
-from cloudshell.nvidia.onyx.flows.nvidia_state_flow import (
-    NvidiaStateFlow as StateFlow,
-)
+from cloudshell.nvidia.onyx.flows.nvidia_state_flow import NvidiaStateFlow as StateFlow
 from cloudshell.nvidia.onyx.snmp.nvidia_snmp_handler import (
     NvidiaSnmpHandler as SNMPHandler,
 )
@@ -361,27 +358,7 @@ class NvidiaOnyxDriver(
         :param path: full path to firmware file, i.e. tftp://10.10.10.1/firmware.tar
         :param vrf_management_name: VRF management Name
         """
-        logger = LoggingSessionContext.get_logger_with_thread_id(context)
-        api = CloudShellSessionContext(context).get_api()
-
-        resource_config = NetworkingResourceConfig.from_context(
-            shell_name=self.SHELL_NAME,
-            supported_os=self.SUPPORTED_OS,
-            context=context,
-            api=api,
-        )
-
-        if not vrf_management_name:
-            vrf_management_name = resource_config.vrf_management_name
-
-        cli_handler = self._cli.get_cli_handler(resource_config, logger)
-
-        logger.info("Start Load Firmware")
-        firmware_operations = FirmwareFlow(cli_handler=cli_handler, logger=logger)
-        response = firmware_operations.load_firmware(
-            path=path, vrf_management_name=vrf_management_name
-        )
-        logger.info("Finish Load Firmware: {}".format(response))
+        raise NotImplementedError("Load Firmware method is not implemented")
 
     def health_check(self, context: ResourceCommandContext):
         """Performs device health check.
